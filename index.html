@@ -1,271 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jenny - Product Designer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #f8f8f8;
-            color: #333;
-        }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+<head><script>(function(w,i,g){w[g]=w[g]||[];if(typeof w[g].push=='function')w[g].push(i)})
+(window,'G-SEKJ4E9T4H','google_tags_first_party');</script><script async src="/s9cc/"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+				gtag('set', 'developer_id.dYzg1YT', true);
+				gtag('config', 'G-SEKJ4E9T4H');
+			</script>
+			
 
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<title>Colorlib | Free Bootstrap Website Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="robots" content="noindex, nofollow" />
+	<!-- Css -->
 
-        .navbar-logo {
-            display: flex;
-            align-items: center;
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-            text-decoration: none;
-        }
 
-        .navbar-logo img {
-            height: 40px; /* Adjust as needed */
-            margin-right: 10px;
-        }
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="assets/css/template.css" rel="stylesheet" media="screen">
+	<link href="assets/css/fa.min.css" rel="stylesheet" media="screen">
+	<link href="assets/css/gfonts.min.css" rel="stylesheet" media="screen">
 
-        .nav-links {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
 
-        .nav-links li {
-            margin-left: 30px;
-        }
+	<script>if ( top !== self ) top.location.replace( self.location.href );// Hey, don't iframe my iframe!</script>
 
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            position: relative;
-            padding: 5px 0;
-            transition: color 0.3s ease;
-        }
+	<!-- <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
 
-        .nav-links a:hover {
-            color: #ff7f50; /* Example hover color */
-        }
+	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300' rel='stylesheet' type='text/css'> -->
 
-        .nav-links a.active {
-            color: #fff;
-            background-color: #ff7f50;
-            padding: 8px 20px;
-            border-radius: 20px;
-        }
+	<!--[if lt IE 9]>
+		<script>/*@cc_on'abbr article aside audio canvas details figcaption figure footer header hgroup mark meter nav output progress section summary subline time video'.replace(/\w+/g,function(n){document.createElement(n)})@*/</script>
+	<![endif]-->
 
-        /* Hero Section */
-        .hero-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden; /* To contain the orange circle */
-            z-index: 1;
-        }
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
 
-        .hero-content {
-            flex: 1;
-            padding-right: 40px;
-            z-index: 2; /* Ensure content is above the circle */
-        }
+	  gtag('config', 'UA-23581568-13');
+	</script>
 
-        .hero-content h1 {
-            font-size: 60px;
-            margin-bottom: 10px;
-            line-height: 1.2;
-        }
-
-        .hero-content h1 span {
-            color: #ff7f50;
-        }
-
-        .hero-content p.hello {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .hero-content .buttons {
-            margin-top: 30px;
-            display: flex;
-            gap: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .btn-primary {
-            background-color: #ff7f50;
-            color: #fff;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #e66a3d;
-        }
-
-        .btn-secondary {
-            background-color: #f0f0f0;
-            color: #333;
-            border: 1px solid #ddd;
-        }
-
-        .btn-secondary:hover {
-            background-color: #e0e0e0;
-        }
-
-        .hero-image {
-            flex: 0 0 auto; /* Prevent image from growing/shrinking */
-            text-align: center;
-            position: relative;
-            z-index: 2; /* Ensure image is above the circle */
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 5px; /* Adjust as needed */
-        }
-
-        /* Orange Circle Background */
-        .orange-circle {
-            position: absolute;
-            bottom: -50%; /* Adjust to control how much is visible */
-            right: -20%; /* Adjust to control how much is visible */
-            width: 800px; /* Adjust size */
-            height: 800px; /* Adjust size */
-            background-color: #ff7f50;
-            border-radius: 50%;
-            z-index: 0; /* Ensure it's behind content */
-            opacity: 0.2; /* Example opacity for a subtle effect */
-        }
-
-        /* Testimonial/Quote */
-        .quote-section {
-            position: absolute;
-            bottom: 20%;
-            left: 20px;
-            width: 300px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 3; /* Ensure it's above other elements */
-        }
-
-        .quote-section .quote-icon {
-            font-size: 40px;
-            color: #ff7f50;
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-
-        .quote-section p {
-            font-size: 16px;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        /* Experience Section */
-        .experience-section {
-            position: absolute;
-            bottom: 20%;
-            right: 20px;
-            text-align: center;
-            z-index: 3; /* Ensure it's above other elements */
-        }
-
-        .experience-section .stars {
-            color: #ffc107; /* Gold color for stars */
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .experience-section .years {
-            font-size: 48px;
-            font-weight: 700;
-            color: #333;
-            line-height: 1;
-        }
-
-        .experience-section .label {
-            font-size: 18px;
-            color: #666;
-        }
-    </style>
 </head>
+
 <body>
-    <div class="container">
-        <nav class="navbar">
-            <a href="#" class="navbar-logo">
-                <img src="https://via.placeholder.com/40x40" alt="JCREA Logo"> JCREA
-            </a>
-            <ul class="nav-links">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Service</a></li>
-                <li><a href="#">Resume</a></li>
-                <li><a href="#">Project</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
 
-        <section class="hero-section">
-            <div class="hero-content">
-                <p class="hello">Hello!</p>
-                <h1>I'm <span>Jenny,</span><br>Product Designer</h1>
-                <div class="buttons">
-                    <a href="#" class="btn btn-primary">Portfolio ↗</a>
-                    <a href="#" class="btn btn-secondary">Hire me</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="http://googleusercontent.com/file_content/0" alt="Jenny, Product Designer">
-            </div>
+<!-- Header -->
+<header class="switcher-bar ssss clearfix">
 
-            <div class="orange-circle"></div>
+	<!-- Logo -->
+	<div class="logo textual pull-left">
+		<a href="https://colorlib.com/wp/templates/" title="Switcher">
+			<img src="assets/img/logo.png" alt="Colorlib logo">
+		</a>
+	</div>
 
-            <div class="quote-section">
-                <div class="quote-icon">&ldquo;</div>
-                <p>Jenny's Exceptional product design ensure our website's success. Highly Recommended</p>
-            </div>
+	<!-- Product Switcher -->
+	<div class="product-switcher pull-left">
+		<a href="#" title="Select a Product">
+			Select a Product <span>+</span>
+		</a>
+	</div>
 
-            <div class="experience-section">
-                <div class="stars">★★★★★</div>
-                <div class="years">10 Years</div>
-                <div class="label">Experience</div>
-            </div>
-        </section>
-    </div>
+	<!-- Bar Remove Button -->
+	<div class="remove-btn header-btn pull-right">
+		<a href="#" title="Close this bar" class="icon-remove"></a>
+	</div>
+
+	<!-- Purchase Button -->
+	<div class="purchase-btn header-btn pull-right">
+		<a href="#" title="Buy now" class="icon-shopping-cart"></a>
+	</div>
+
+	<!-- Mobile Button -->
+	<div class="mobile-btn header-btn pull-right hidden-xs">
+		<a href="#" title="Smartphone View" class="icon-mobile-phone"></a>
+	</div>
+
+	<!-- Tablet Button -->
+	<div class="tablet-btn header-btn pull-right hidden-xs">
+		<a href="#" title="Tablet View" class="icon-tablet"></a>
+	</div>
+
+	<!-- Desktop Button -->
+	<div class="desktop-btn header-btn pull-right hidden-xs">
+		<a href="#" title="Desktop View" class="icon-desktop"></a>
+	</div>
+
+</header>
+
+<!-- Products List -->
+<section class="switcher-body">
+
+	<a href="#" title="Prev" class="icon-chevron-left products-prev"></a>
+
+	<div class="products-wrapper">
+		<div class="products-list clearfix">
+
+		</div>
+	</div>
+
+	<a href="#" title="Next" class="icon-chevron-right products-next"></a>
+
+</section>
+
+
+<!-- Product iframe -->
+<iframe class="product-iframe" frameborder="0" border="0"></iframe>
+
+
+
+<!-- Javascript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="assets/js/products.js"></script>
+
+<script src="assets/js/application.min.js"></script>
+<!-- <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+<div id='gpt-passback-stpd-0-1578495345178'>
+  <script>
+     window.googletag = window.googletag || {cmd: []};
+       googletag.cmd.push(function() {
+         googletag
+           .defineSlot('/147246189/colorlib.com_728x90_anchor_sticky_DFP', [[320, 100], [728, 90]], 'gpt-passback-stpd-0-1578495345178')
+           .addService(googletag.pubads()).setTargeting('Placement_type', ['serving']);
+         googletag.enableServices();
+         googletag.display('gpt-passback-stpd-0-1578495345178');
+     });
+  </script> -->
+</div>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"95ffc8993b5b659b","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.6.2","token":"cd0b4b3a733644fc843ef0b185f98241"}' crossorigin="anonymous"></script>
 </body>
+
 </html>
