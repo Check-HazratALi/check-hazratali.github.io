@@ -1,30 +1,1179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-    <script>
-        // Redirect to one page by default
-        window.onload = function() {
-            window.location.href = "./pages/Portfolio.html";
-        }
-    </script>
-<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fhazratsa6536back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hazrat Ali. | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #141414;
+    --card-bg: #1e1e1e;
+    --orange: #E8632A;
+    --lime: #C8F23C;
+    --white: #f5f5f5;
+    --gray: #888;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+    --font-condensed: 'Barlow Condensed', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 100;
+    background: rgba(20,20,20,0.92);
+    backdrop-filter: blur(8px);
+  }
+
+  .logo {
+    background: var(--orange);
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 1.2;
+    padding: 7px 14px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.75;
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { opacity: 1; }
+
+  .nav-contact {
+    background: var(--orange);
+    color: #fff !important;
+    padding: 8px 18px;
+    border-radius: 6px;
+    opacity: 1 !important;
+    font-weight: 700 !important;
+  }
+
+  /* ── PAGES ── */
+  .page { display: none; min-height: 100vh; position: relative; z-index: 1; }
+  .page.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page.active { animation: fadeUp 0.4s ease both; }
+
+  /* ══════════════════════════════════════
+     HOME PAGE
+  ══════════════════════════════════════ */
+  #home { padding-top: 56px; overflow: hidden; }
+
+  .home-hero {
+    position: relative;
+    min-height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 80px 0;
+  }
+
+  .side-deco {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: clamp(70px, 10vw, 140px);
+    color: rgba(255,255,255,0.04);
+    letter-spacing: 8px;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+  }
+  .side-deco.left { left: -6px; }
+  .side-deco.right { right: -6px; }
+
+  .scroll-label {
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+  }
+
+  .role-tags {
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .role-tag {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .role-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .hero-name {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-name h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6.5vw, 92px);
+    line-height: 0.9;
+    color: var(--white);
+    letter-spacing: 2px;
+  }
+
+  .hero-photo-wrap {
+    position: relative;
+    width: 280px;
+    height: 360px;
+    margin: 4px auto;
+    z-index: 2;
+  }
+
+  .hero-photo-bg {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 300px;
+    background: #2a2a2a;
+    border-radius: 120px 120px 0 0;
+  }
+
+  .arch-deco {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px;
+    height: 260px;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .hero-silhouette {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 300px;
+    background: linear-gradient(180deg, #3a3a3a 0%, #252525 100%);
+    border-radius: 120px 120px 0 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 30px;
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  .person-svg { width: 130px; opacity: 0.55; }
+
+  .about-card {
+    background: var(--lime);
+    border-radius: 16px;
+    padding: 26px 30px;
+    max-width: 660px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .about-card-title {
+    font-family: var(--font-display);
+    font-size: 34px;
+    color: #111;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+
+  .about-card-text {
+    font-size: 14px;
+    color: #111;
+    line-height: 1.65;
+    font-weight: 500;
+  }
+
+  .about-card-text strong { font-weight: 800; }
+
+  .skills-bar {
+    background: rgba(30,30,30,0.95);
+    border-radius: 12px;
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    max-width: 680px;
+    width: 100%;
+    margin: 14px auto 0;
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap;
+  }
+
+  .skill-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    opacity: 0.75;
+    transition: opacity .2s, transform .2s;
+    cursor: default;
+  }
+  .skill-icon:hover { opacity: 1; transform: scale(1.15); }
+
+  /* ══════════════════════════════════════
+     ABOUT PAGE
+  ══════════════════════════════════════ */
+  #about { padding-top: 56px; }
+
+  .page-header {
+    max-width: 760px;
+    margin: 40px auto 28px;
+    padding: 0 30px;
+  }
+
+  .page-title-pill {
+    background: var(--lime);
+    color: #111;
+    font-family: var(--font-display);
+    font-size: clamp(34px, 5vw, 58px);
+    letter-spacing: 4px;
+    padding: 16px 40px;
+    border-radius: 16px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .about-intro {
+    max-width: 760px;
+    margin: 0 auto 24px;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .about-photo-placeholder {
+    width: 210px;
+    height: 270px;
+    background: linear-gradient(145deg, #2e2e2e, #1a1a1a);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    color: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .about-bio {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 22px 22px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.82);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .hl-orange { color: var(--orange); font-weight: 700; }
+  .hl-lime   { color: var(--lime);   font-weight: 700; }
+
+  .about-skills-wrap {
+    max-width: 760px;
+    margin: 0 auto 20px;
+    padding: 0 30px;
+  }
+
+  .about-skills-inner {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .about-services {
+    max-width: 760px;
+    margin: 0 auto 22px;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: 195px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .services-list {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .service-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .s-icon {
+    width: 32px;
+    height: 32px;
+    background: #2a2a2a;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .special-card {
+    background: var(--lime);
+    border-radius: 12px;
+    padding: 20px 22px;
+    color: #111;
+  }
+
+  .special-card p {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  .special-card p strong { font-weight: 800; }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .pillar h4 {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--orange);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .pillar p {
+    font-size: 11px;
+    line-height: 1.5;
+    color: #222;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .about-resume {
+    max-width: 760px;
+    margin: 0 auto 22px;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: 1fr 190px;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .about-resume-text {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 22px 22px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.82);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .resume-btn {
+    background: var(--lime);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 20px;
+    text-align: center;
+    transition: opacity .2s;
+  }
+  .resume-btn:hover { opacity: 0.9; }
+  .resume-btn span {
+    font-family: var(--font-display);
+    font-size: 26px;
+    color: #111;
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+
+  .about-big-photo {
+    max-width: 760px;
+    margin: 0 auto 28px;
+    padding: 0 30px;
+  }
+
+  .about-big-photo-inner {
+    width: 100%;
+    height: 240px;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.07);
+    font-size: 80px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* ══════════════════════════════════════
+     PROJECTS PAGE
+  ══════════════════════════════════════ */
+  #projects { padding-top: 56px; }
+
+  .projects-wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+
+  .project-card {
+    border-radius: 16px;
+    padding: 26px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 270px;
+    gap: 24px;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .project-card.dark { background: #1c1c1c; }
+  .project-card.blue { background: #05101a; }
+
+  .project-card-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 6.5vw, 92px);
+    color: var(--white);
+    line-height: 0.88;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+
+  .project-mockup {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: #111;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .project-card.blue .project-mockup { background: #030d15; }
+
+  .project-info-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .project-tag {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--orange);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .figma-icon { width: 26px; height: 26px; }
+
+  .wip-text {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 5vw, 68px);
+    color: var(--white);
+    text-align: center;
+    letter-spacing: 3px;
+    padding: 36px 0 48px;
+    line-height: 1.1;
+  }
+
+  /* mockup visuals */
+  .pf-mockup {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1a1a1a, #111);
+    border-radius: 8px;
+    padding: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pf-mockup-nav {
+    display: flex; align-items: center;
+    justify-content: space-between; margin-bottom: 10px;
+  }
+  .pf-logo-sm { background: var(--orange); color: #fff; font-size: 7px; font-weight: 900; padding: 3px 6px; border-radius: 20px; }
+  .pf-nav-links { display: flex; gap: 6px; }
+  .pf-nav-link { font-size: 6px; color: rgba(255,255,255,0.5); }
+  .pf-nav-btn { background: var(--orange); color: #fff; font-size: 6px; padding: 2px 5px; border-radius: 3px; }
+  .pf-hero-text { font-family: var(--font-display); font-size: 16px; color: var(--white); line-height: 1; margin-bottom: 6px; }
+  .pf-about-btn { background: var(--lime); color: #111; font-size: 7px; font-weight: 800; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+  .pf-person-placeholder { position: absolute; right: 14px; top: 14px; width: 46px; height: 76px; background: rgba(255,255,255,0.06); border-radius: 26px 26px 0 0; }
+
+  .app-mockup {
+    width: 100%; height: 100%;
+    background: #030d18;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    gap: 8px;
+  }
+  .app-side {
+    width: 90px;
+    background: #06182a;
+    border-radius: 6px;
+    padding: 10px 8px;
+  }
+  .app-side .ak-title { font-family: var(--font-display); font-size: 13px; color: var(--white); letter-spacing: 1px; margin-bottom: 4px; }
+  .app-side .ak-sub { font-size: 8px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 8px; }
+  .ak-search { background: rgba(255,255,255,0.08); border-radius: 4px; padding: 4px 6px; font-size: 8px; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+  .ak-menu-item { padding: 4px 0; font-size: 8px; color: rgba(255,255,255,0.5); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .app-main { flex: 1; background: #020d18; border-radius: 6px; }
+
+  /* ══════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════ */
+  footer {
+    background: var(--orange);
+    border-radius: 20px 20px 0 0;
+    padding: 38px 40px 28px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+    max-width: 740px;
+    margin: 0 auto;
+  }
+
+  .footer-brand .logo-footer {
+    font-family: var(--font-body);
+    font-weight: 900;
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+
+  .footer-brand p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+    margin-bottom: 14px;
+    max-width: 180px;
+  }
+
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.5); }
+
+  .footer-sitemap h4 {
+    font-size: 11px; font-weight: 800; color: #fff;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;
+  }
+
+  .footer-sitemap a {
+    display: block; color: rgba(255,255,255,0.8);
+    font-size: 13px; text-decoration: none;
+    margin-bottom: 6px; cursor: pointer; transition: color .2s;
+  }
+  .footer-sitemap a:hover { color: #fff; }
+
+  .footer-social { text-align: right; }
+
+  .footer-social p {
+    font-size: 11px; font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+  }
+
+  .social-icons { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 18px; }
+
+  .social-icons a {
+    width: 30px; height: 30px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 12px; font-weight: 700;
+    text-decoration: none; transition: background .2s;
+  }
+  .social-icons a:hover { background: rgba(255,255,255,0.35); }
+
+  .contact-btn-footer {
+    display: block;
+    border: 2px solid #fff;
+    color: #fff;
+    text-align: center;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s, color .2s;
+  }
+  .contact-btn-footer:hover { background: #fff; color: var(--orange); }
+
+  /* skill label tooltips */
+  .skill-icon { position: relative; }
+  .skill-label {
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+</style>
 </head>
-<body class="bg-background">
-    <div class="min-h-screen flex items-center justify-center">
-        <div class="text-center">
-            <h1 class="text-2xl font-semibold text-text-primary">Redirecting...</h1>
-            <p class="mt-2 text-text-secondary">Please wait while we redirect you to a page.</p>
-            <div class="mt-4">
-                 <p class="text-text-secondary">If you are not redirected automatically, please choose a page:</p>
-                <div class="mt-2 space-y-2">
-                        <a href="./pages/Portfolio.html" class="block px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-hover transition-colors">Portfolio</a>
-                    </div>
-            </div>
-        </div>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="showPage('home')">HAZRAT<br>ALI.</div>
+  <div class="nav-links">
+    <a onclick="showPage('projects')" id="nav-projects">PROJECTS</a>
+    <a onclick="showPage('about')" id="nav-about">ABOUT</a>
+    <a class="nav-contact" onclick="alert('Contact: your email here!')">CONTACT</a>
+  </div>
+</nav>
+
+<!-- ══════════════ HOME ══════════════ -->
+<div id="home" class="page active">
+  <div class="home-hero">
+
+    <div class="side-deco left">APP<br>DEV</div>
+    <div class="side-deco right">GAME<br>DEV</div>
+
+    <div class="scroll-label">S C R O L L</div>
+
+    <div class="role-tags">
+      <div class="role-tag">
+        <div class="role-icon">📱</div>
+        <div>FLUTTER APP<br>DESIGNER</div>
+      </div>
+      <div class="role-tag">
+        <div class="role-icon">🎮</div>
+        <div>UE5 GAME<br>DEVELOPER</div>
+      </div>
+      <div class="role-tag">
+        <div class="role-icon">🎨</div>
+        <div>UI/UX<br>DESIGNER</div>
+      </div>
     </div>
 
+    <!-- Name top -->
+    <div class="hero-name" style="margin-bottom:8px;">
+      <h1>MD. HAZRAT</h1>
+    </div>
+
+    <!-- Photo -->
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-bg"></div>
+      <svg class="arch-deco" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 240 Q20 20 130 20 Q240 20 240 240" stroke="#C8F23C" stroke-width="2" fill="none" opacity="0.5"/>
+        <path d="M40 240 Q40 40 130 40 Q220 40 220 240" stroke="#E8632A" stroke-width="1.5" fill="none" opacity="0.4"/>
+        <line x1="25" y1="100" x2="5"   y2="80"  stroke="#C8F23C" stroke-width="2"   opacity="0.6"/>
+        <line x1="235" y1="100" x2="255" y2="80"  stroke="#E8632A" stroke-width="2"   opacity="0.6"/>
+        <line x1="25" y1="122" x2="2"   y2="107" stroke="#C8F23C" stroke-width="1.5" opacity="0.4"/>
+        <line x1="235" y1="122" x2="258" y2="107" stroke="#E8632A" stroke-width="1.5" opacity="0.4"/>
+      </svg>
+      <div class="hero-silhouette">
+        <svg class="person-svg" viewBox="0 0 80 140" fill="none">
+          <circle cx="40" cy="22" r="18" fill="rgba(255,255,255,0.2)"/>
+          <path d="M8 80 Q8 50 40 50 Q72 50 72 80 L72 140 L8 140 Z" fill="rgba(255,255,255,0.15)"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Name bottom -->
+    <div class="hero-name" style="margin-top:-8px; margin-bottom:18px;">
+      <h1>ALI</h1>
+    </div>
+
+    <!-- About card -->
+    <div class="about-card">
+      <div class="about-card-title">ABOUT MYSELF</div>
+      <p class="about-card-text">
+        I am <strong>MD. Hazrat Ali</strong>, a creative professional from <strong>Savar, Dhaka</strong> — skilled at building
+        stunning <strong>Flutter apps</strong> and immersive <strong>UE5 game experiences</strong>.
+        I am passionate about merging clean code with bold design to achieve both
+        <strong>visual excellence</strong> and <strong>real-world impact</strong>.
+      </p>
+    </div>
+
+    <!-- Skills bar -->
+    <div class="skills-bar">
+      <!-- C++ -->
+      <div class="skill-icon" style="position:relative;">
+        <svg width="28" height="22" viewBox="0 0 30 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="15" font-family="'Barlow',sans-serif" font-weight="900" font-size="15" fill="#659BD3">C++</text>
+        </svg>
+        <span class="skill-label">C++</span>
+      </div>
+      <!-- Flutter -->
+      <div class="skill-icon" style="position:relative;">
+        <svg width="22" height="22" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14.5 0L0 14.5l4.5 4.5L19 4.5z" fill="#54C5F8"/>
+          <path d="M0 14.5l4.5 4.5 4.5-4.5L4.5 10z" fill="#29B6F6"/>
+          <path d="M14.5 14.5L10 19l4.5 4.5 9-9z" fill="#01579B"/>
+          <path d="M10 19l4.5 4.5-4.5 4.5L5.5 23.5z" fill="#29B6F6"/>
+        </svg>
+        <span class="skill-label">Flutter</span>
+      </div>
+      <!-- Figma -->
+      <div class="skill-icon" style="position:relative;">
+        <svg width="20" height="22" viewBox="0 0 38 57" fill="none">
+          <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
+          <path d="M9.5 47.5A9.5 9.5 0 0 1 19 38h9.5v9.5a9.5 9.5 0 0 1-19 0z" fill="#0ACF83"/>
+          <path d="M19 0h-9.5A9.5 9.5 0 0 0 9.5 19H19V0z" fill="#FF7262"/>
+          <path d="M28.5 0H19v19h9.5a9.5 9.5 0 0 0 0-19z" fill="#F24E1E"/>
+          <path d="M9.5 19A9.5 9.5 0 1 0 19 28.5H9.5V19z" fill="#A259FF"/>
+        </svg>
+        <span class="skill-label">Figma</span>
+      </div>
+      <!-- Blender -->
+      <div class="skill-icon" style="position:relative; font-size:22px;">
+        🫙<span class="skill-label">Blender</span>
+      </div>
+      <!-- Unreal Engine -->
+      <div class="skill-icon" style="position:relative;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(255,255,255,0.75)">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4a8 8 0 1 1 0 16A8 8 0 0 1 12 4zm0 2a6 6 0 1 0 0 12A6 6 0 0 0 12 6zm2.5 2l1 1.73-1.25.72V14l-2.25-1.3-2.25 1.3V10.45l-1.25-.72L9.5 8l1.25.72L12 8l1.25-.72L13.5 8l1 1.73z"/>
+        </svg>
+        <span class="skill-label">UE5</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-footer">MD. HAZRAT<br>ALI.</div>
+        <p>A designer and developer from Bangladesh, dedicated to building stunning apps and engaging digital experiences.</p>
+        <div class="footer-copy">Hazratali · Copyright © 2026</div>
+      </div>
+      <div class="footer-sitemap">
+        <h4>Sitemap</h4>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('projects')">Projects</a>
+        <a onclick="showPage('about')">About</a>
+      </div>
+      <div class="footer-social">
+        <p>Follow me on</p>
+        <div class="social-icons">
+          <a href="#" title="LinkedIn">in</a>
+          <a href="#" title="Instagram">ig</a>
+          <a href="#" title="YouTube">yt</a>
+          <a href="#" title="GitHub">gh</a>
+        </div>
+        <a class="contact-btn-footer">CONTACT ME</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<div id="about" class="page">
+
+  <div class="page-header">
+    <div class="page-title-pill">ABOUT</div>
+  </div>
+
+  <div class="about-intro">
+    <div class="about-photo-placeholder">👤</div>
+    <div class="about-bio">
+      Born and raised in <span class="hl-orange">Savar, Dhaka, Bangladesh</span>, I am currently studying
+      <span class="hl-lime">Computer Science Engineering</span> at
+      <span class="hl-orange">Northern University Bangladesh.</span>
+      <br><br>
+      As a creative developer and curious thinker, I enjoy building things that are both functional and visually engaging.
+      Specializing in <span class="hl-lime">App Design & Development</span>, I craft beautiful Flutter apps and
+      immersive Unreal Engine 5 game experiences. I love turning ideas into
+      <span class="hl-lime">functional designs</span> and <span class="hl-lime">real digital products</span>
+      that people actually enjoy using.
+      <br><br>
+      My academic background has given me hands-on experience in <span class="hl-orange">Game Design</span>,
+      <span class="hl-orange">3D Modelling</span>, and a strong foundation in
+      <span class="hl-orange">C++ programming</span> — the language that powers everything from games to systems.
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div class="about-skills-wrap">
+    <div class="about-skills-inner">
+      <!-- C++ -->
+      <div class="skill-icon">
+        <svg width="32" height="22" viewBox="0 0 36 18" fill="none">
+          <text x="0" y="15" font-family="'Barlow',sans-serif" font-weight="900" font-size="16" fill="#659BD3">C++</text>
+        </svg>
+      </div>
+      <!-- Flutter -->
+      <div class="skill-icon">
+        <svg width="22" height="22" viewBox="0 0 24 30" fill="none">
+          <path d="M14.5 0L0 14.5l4.5 4.5L19 4.5z" fill="#54C5F8"/>
+          <path d="M0 14.5l4.5 4.5 4.5-4.5L4.5 10z" fill="#29B6F6"/>
+          <path d="M14.5 14.5L10 19l4.5 4.5 9-9z" fill="#01579B"/>
+          <path d="M10 19l4.5 4.5-4.5 4.5L5.5 23.5z" fill="#29B6F6"/>
+        </svg>
+      </div>
+      <!-- Figma -->
+      <div class="skill-icon">
+        <svg width="20" height="22" viewBox="0 0 38 57" fill="none">
+          <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
+          <path d="M9.5 47.5A9.5 9.5 0 0 1 19 38h9.5v9.5a9.5 9.5 0 0 1-19 0z" fill="#0ACF83"/>
+          <path d="M19 0h-9.5A9.5 9.5 0 0 0 9.5 19H19V0z" fill="#FF7262"/>
+          <path d="M28.5 0H19v19h9.5a9.5 9.5 0 0 0 0-19z" fill="#F24E1E"/>
+          <path d="M9.5 19A9.5 9.5 0 1 0 19 28.5H9.5V19z" fill="#A259FF"/>
+        </svg>
+      </div>
+      <!-- Blender -->
+      <div class="skill-icon" style="font-size:22px;">🫙</div>
+      <!-- UE5 -->
+      <div class="skill-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(255,255,255,0.75)">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4a8 8 0 1 1 0 16A8 8 0 0 1 12 4z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services + Special Skill -->
+  <div class="about-services">
+    <div class="services-list">
+      <div class="service-item"><div class="s-icon">🖥️</div><div>UI DESIGN</div></div>
+      <div class="service-item"><div class="s-icon">📱</div><div>APP DESIGN</div></div>
+      <div class="service-item"><div class="s-icon">🎮</div><div>GAME DESIGN</div></div>
+      <div class="service-item"><div class="s-icon">⚡</div><div>PROTOTYPING</div></div>
+      <div class="service-item"><div class="s-icon">🌐</div><div>WEB DESIGN</div></div>
+    </div>
+
+    <div class="special-card">
+      <p>
+        <strong>Skilled in C++ Programming</strong>, I build high-performance systems and game logic that power everything behind the scenes —
+        giving my UE5 games real depth and my apps blazing speed. Here's how C++ shapes my development approach: →
+      </p>
+      <div class="pillars-grid">
+        <div class="pillar">
+          <h4>⚡ Performance</h4>
+          <p>C++ gives me fine control over memory and CPU, making my games run smoothly and my apps feel instant — even on low-end devices.</p>
+        </div>
+        <div class="pillar">
+          <h4>⚡ Game Logic</h4>
+          <p>In UE5, C++ is the backbone. I write custom game mechanics, AI behaviors, and physics interactions that blueprints alone can't achieve.</p>
+        </div>
+        <div class="pillar">
+          <h4>⚡ Problem Solving</h4>
+          <p>C++ thinking trains me to break complex problems into precise, efficient solutions — a skill that carries into every design and dev decision I make.</p>
+        </div>
+        <div class="pillar">
+          <h4>⚡ Cross-Domain</h4>
+          <p>From game engines to app backends, C++ knowledge bridges worlds — letting me communicate fluently across the full tech stack and collaborate with any team.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resume -->
+  <div class="about-resume">
+    <div class="about-resume-text">
+      Through my work, I want to help create useful, engaging, and high-performance digital products that make people's lives easier and more fun.
+      I ensure every project I undertake achieves both visual excellence & functional quality.
+      Whether you're looking for a Flutter app designer, a UE5 game developer, or a creative collaborator —
+      I'm ready to bring your vision to life. Let's connect and build something amazing together!
+    </div>
+    <div class="resume-btn">
+      <div style="font-size:26px; color:#111;">⬇</div>
+      <span>MY<br>RESUME</span>
+    </div>
+  </div>
+
+  <!-- Big photo -->
+  <div class="about-big-photo">
+    <div class="about-big-photo-inner">👤</div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-footer">MD. HAZRAT<br>ALI.</div>
+        <p>A designer and developer from Bangladesh, dedicated to building stunning apps and engaging digital experiences.</p>
+        <div class="footer-copy">Hazratali · Copyright © 2026</div>
+      </div>
+      <div class="footer-sitemap">
+        <h4>Sitemap</h4>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('projects')">Projects</a>
+        <a onclick="showPage('about')">About</a>
+      </div>
+      <div class="footer-social">
+        <p>Follow me on</p>
+        <div class="social-icons">
+          <a href="#">in</a>
+          <a href="#">ig</a>
+          <a href="#">yt</a>
+          <a href="#">gh</a>
+        </div>
+        <a class="contact-btn-footer">CONTACT ME</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════ PROJECTS ══════════════ -->
+<div id="projects" class="page">
+
+  <div class="page-header">
+    <div class="page-title-pill">PROJECTS</div>
+  </div>
+
+  <div class="projects-wrap">
+
+    <!-- Portfolio card -->
+    <div class="project-card dark">
+      <div>
+        <div class="project-card-title">PORT<br>FOLIO</div>
+        <div class="project-mockup">
+          <div class="pf-mockup">
+            <div class="pf-mockup-nav">
+              <div class="pf-logo-sm">HAZRAT ALI.</div>
+              <div class="pf-nav-links">
+                <span class="pf-nav-link">PROJECTS</span>
+                <span class="pf-nav-link">ABOUT</span>
+                <span class="pf-nav-btn">CONTACT</span>
+              </div>
+            </div>
+            <div class="pf-hero-text">MD. HAZRAT<br>ALI</div>
+            <div class="pf-about-btn">ABOUT ME</div>
+            <div class="pf-person-placeholder"></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="project-info-title">
+          Portfolio
+          <svg class="figma-icon" viewBox="0 0 38 57" fill="none">
+            <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
+            <path d="M9.5 47.5A9.5 9.5 0 0 1 19 38h9.5v9.5a9.5 9.5 0 0 1-19 0z" fill="#0ACF83"/>
+            <path d="M19 0h-9.5A9.5 9.5 0 0 0 9.5 19H19V0z" fill="#FF7262"/>
+            <path d="M28.5 0H19v19h9.5a9.5 9.5 0 0 0 0-19z" fill="#F24E1E"/>
+            <path d="M9.5 19A9.5 9.5 0 1 0 19 28.5H9.5V19z" fill="#A259FF"/>
+          </svg>
+        </div>
+        <div class="project-tag">WEB DESIGN</div>
+        <p class="project-desc">A professionally developed personal portfolio website designed to showcase my skills, projects, and creative work. Features a sleek dark aesthetic with smooth navigation and great user experience across all devices.</p>
+      </div>
+    </div>
+
+    <!-- AskAI card -->
+    <div class="project-card blue">
+      <div>
+        <div class="project-card-title">ASK<br>AI</div>
+        <div class="project-mockup">
+          <div class="app-mockup">
+            <div class="app-side">
+              <div class="ak-title">ASKAI</div>
+              <div class="ak-sub">AI App</div>
+              <div class="ak-search">🔍 Search...</div>
+              <div class="ak-menu-item">+ New Chat</div>
+              <div class="ak-menu-item">◉ Explore</div>
+              <div class="ak-menu-item">∧ History</div>
+            </div>
+            <div class="app-main"></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="project-info-title">
+          AskAI
+          <svg class="figma-icon" viewBox="0 0 38 57" fill="none">
+            <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
+            <path d="M9.5 47.5A9.5 9.5 0 0 1 19 38h9.5v9.5a9.5 9.5 0 0 1-19 0z" fill="#0ACF83"/>
+            <path d="M19 0h-9.5A9.5 9.5 0 0 0 9.5 19H19V0z" fill="#FF7262"/>
+            <path d="M28.5 0H19v19h9.5a9.5 9.5 0 0 0 0-19z" fill="#F24E1E"/>
+            <path d="M9.5 19A9.5 9.5 0 1 0 19 28.5H9.5V19z" fill="#A259FF"/>
+          </svg>
+        </div>
+        <div class="project-tag">APP DEVELOPMENT</div>
+        <p class="project-desc">AskAI is a Flutter-built AI chatbot app featuring a dedicated search bar, clean dark/light themes, and a seamless conversational interface — focused on speed, accessibility, and a delightful user experience.</p>
+      </div>
+    </div>
+
+    <div class="wip-text">WORKING ON<br>MORE PROJECTS...</div>
+
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-footer">MD. HAZRAT<br>ALI.</div>
+        <p>A designer and developer from Bangladesh, dedicated to building stunning apps and engaging digital experiences.</p>
+        <div class="footer-copy">Hazratali · Copyright © 2026</div>
+      </div>
+      <div class="footer-sitemap">
+        <h4>Sitemap</h4>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('projects')">Projects</a>
+        <a onclick="showPage('about')">About</a>
+      </div>
+      <div class="footer-social">
+        <p>Follow me on</p>
+        <div class="social-icons">
+          <a href="#">in</a>
+          <a href="#">ig</a>
+          <a href="#">yt</a>
+          <a href="#">gh</a>
+        </div>
+        <a class="contact-btn-footer">CONTACT ME</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a:not(.nav-contact)').forEach(a => a.classList.remove('active'));
+
+    const page = document.getElementById(id);
+    if (page) { page.classList.add('active'); window.scrollTo(0, 0); }
+
+    const navMap = { projects: 'nav-projects', about: 'nav-about' };
+    if (navMap[id]) document.getElementById(navMap[id]).classList.add('active');
+  }
+</script>
 </body>
 </html>
